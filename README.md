@@ -2,7 +2,7 @@
 
 # Astra.io - Modern Full Stack Blog Platform
 
-A modern, feature-rich blogging platform built with React, Node.js, and MongoDB. Features a beautiful UI with dark/light mode support, user authentication, and a rich text editor for blog creation.
+A modern, feature-rich blogging platform built with React, Node.js, and MongoDB. Features a beautiful UI with dark/light mode support, role-based authentication (Author, User, Admin), and a category-based article management system.
 
 ![Astra.io Banner](https://iili.io/3dYEAL7.png)
 
@@ -10,38 +10,51 @@ A modern, feature-rich blogging platform built with React, Node.js, and MongoDB.
 
 - 🌓 Dark/Light Mode Toggle
 - 🔐 Secure Authentication with Clerk
-- 📝 Rich Text Editor for Blog Posts
-- 🎨 Modern UI with Material Tailwind
+- 📝 Article Creation & Management
+- 🎨 Modern UI with Material Tailwind, Mantine & MUI
 - 📱 Fully Responsive Design
-- 🔍 Search Functionality
-- 🏷️ Category-based Blog Organization
+- 🏷️ Category-based Article Organization
 - 💬 Comment System
-- 👤 User Profiles
-- 📊 Author Dashboard
+- 👤 Role-based Access (Author / User / Admin)
+- 📊 Author & Admin Dashboards
+- ✨ Smooth Animations with Framer Motion & React Spring
 
 ## 🛠️ Tech Stack
 
 ### Frontend
-- React.js
+- React 18
+- Vite
+- TailwindCSS 4
 - Material Tailwind
-- TailwindCSS
-- React Router DOM
+- Mantine UI
+- MUI (Material UI)
+- Framer Motion & React Spring
+- React Router DOM v7
+- React Hook Form
 - Clerk Authentication
-- React Query
 - Axios
+- Lucide React Icons
 
 ### Backend
 - Node.js
 - Express.js
-- MongoDB
-- Mongoose
+- MongoDB & Mongoose
+- Clerk Express SDK
+- Express Async Handler
 
 ## 📦 Installation
 
+### Prerequisites
+- Node.js (v18+)
+- MongoDB (local or Atlas)
+- A [Clerk](https://clerk.com) account for authentication keys
+
+### Steps
+
 1. Clone the repository:
 \`\`\`bash
-git clone https://github.com/Shashank6717/Fullstack-BlogApplication-Astra.io.git
-cd Fullstack-BlogApplication-Astra.io
+git clone https://github.com/saiteja7065/Blog-Application.git
+cd Fullstack-BlogApplication
 \`\`\`
 
 2. Install dependencies for both frontend and backend:
@@ -57,45 +70,55 @@ npm install
 
 3. Set up environment variables:
 
-Create a \`.env\` file in the server directory:
+Create a \`.env\` file in the **server** directory:
 \`\`\`env
-DBURL=your_mongodb_uri
 PORT=3000
+DBURL=mongodb://127.0.0.1:27017/blogapp
+CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
 \`\`\`
 
-Create a \`.env\` file in the client directory:
+Create a \`.env\` file in the **client** directory:
 \`\`\`env
-VITE_APP_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
-VITE_APP_CLERK_SECRET_KEY=your_clerk_secret_key
+VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 \`\`\`
 
-## 📋 Required Packages
+## 📋 Dependencies
 
-### Frontend Dependencies
+### Frontend
 \`\`\`json
 {
-    "@clerk/clerk-react": "^4.0.0",
-    "@material-tailwind/react": "^2.0.0",
-    "@tanstack/react-query": "^4.0.0",
-    "axios": "^1.0.0",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
-    "react-hot-toast": "^2.0.0",
-    "react-icons": "^4.0.0",
-    "react-quill": "^2.0.0",
-    "react-router-dom": "^6.0.0",
-    "tailwindcss": "^3.0.0"
+    "@clerk/clerk-react": "^5.24.1",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@headlessui/react": "^2.2.0",
+    "@heroicons/react": "^2.2.0",
+    "@mantine/core": "^7.17.1",
+    "@material-tailwind/react": "^2.1.10",
+    "@mui/material": "^6.4.6",
+    "@react-spring/web": "^9.7.5",
+    "@tailwindcss/vite": "^4.0.9",
+    "axios": "^1.8.1",
+    "framer-motion": "^12.4.7",
+    "lucide-react": "^0.475.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-hook-form": "^7.54.2",
+    "react-router-dom": "^7.2.0",
+    "tailwindcss": "^4.0.9"
 }
 \`\`\`
 
-### Backend Dependencies
+### Backend
 \`\`\`json
 {
-    "express": "^4.0.0",
-    "mongoose": "^7.0.0",
-    "cors": "^2.0.0",
-    "dotenv": "^16.0.0",
-    "multer": "^1.0.0"
+    "@clerk/express": "^1.3.50",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-handler": "^1.2.0",
+    "mongoose": "^8.11.0",
+    "nodemon": "^3.1.9"
 }
 \`\`\`
 
@@ -105,6 +128,8 @@ VITE_APP_CLERK_SECRET_KEY=your_clerk_secret_key
 \`\`\`bash
 cd server
 node server.js
+# or with auto-reload:
+npx nodemon server.js
 \`\`\`
 
 2. Start the frontend development server:
@@ -113,9 +138,11 @@ cd client
 npm run dev
 \`\`\`
 
+3. Open your browser at \`http://localhost:5173\`
+
 ## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome! 
+Contributions, issues, and feature requests are welcome!
 
 ## 📝 License
 
@@ -123,12 +150,12 @@ This project is [MIT](./LICENSE) licensed.
 
 ## 👨‍💻 Author
 
-**Your Name**
-- GitHub: [@Shashank6717](https://github.com/Shashank6717)
-- LinkedIn: [Shashank Dornala](www.linkedin.com/in/shashank-dornala-24108b348)
+**Saiteja Garlapati**
+- GitHub: [@saiteja7065](https://github.com/saiteja7065)
+- LinkedIn: [Saiteja Garlapati](https://www.linkedin.com/in/saitejagarlapati)
 
 ## 🙏 Acknowledgments
 
-- Material Tailwind for the beautiful UI components
+- Material Tailwind, Mantine & MUI for UI components
 - Clerk for the authentication system
 - All contributors who helped improve this project
